@@ -1,4 +1,4 @@
-module my_otel_server
+module otel_server
 
 go 1.24.0
 

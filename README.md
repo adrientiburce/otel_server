@@ -27,7 +27,22 @@ The service includes:
 
 For the metric `http_client_duration_milliseconds_count` you will find for ex a line like this at `/metrics`:
 ```
-http_client_duration_milliseconds_count{http_method="GET",http_status_code="502",net_peer_name="httpbin.org",otel_scope_name="go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp",otel_scope_version="0.59.0",service_name="unknown_service:main",url_full="https://httpbin.org/status/200",url_path="/status/200"} 3
+http_client_duration_milliseconds_bucket{http_method="GET",http_status_code="200",net_peer_name="httpbin.org",otel_scope_name="go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp",otel_scope_version="0.59.0",service_name="health-service",url_full="https://httpbin.org/status/200",url_path="/status/200",le="10"} 0
+```
+
+those are the labels associated with the metric :
+
+```
+{
+	http_method="GET",
+	http_status_code="200",
+	net_peer_name="httpbin.org",
+	otel_scope_name="go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp",
+	otel_scope_version="0.59.0",
+	service_name="health-service",
+	url_full="https://httpbin.org/status/200",
+	url_path="/status/200",
+}
 ```
 
 ### Default Labels (Added by OTel HTTP Instrumentation)
