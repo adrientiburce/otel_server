@@ -48,11 +48,17 @@ those are the labels associated with the metric :
 ### Default Labels (Added by OTel HTTP Instrumentation)
 - `http_method="GET"` - The HTTP method used in the request
 - `http_status_code="502"` - The HTTP response status code
-- `net_peer_name="httpbin.org"` - The target hostname
+- `net_peer_name="httpbin.org"` - The target hostname (_Deprecated_ in favor of server.address)
 - `otel_scope_name="go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"` - The instrumentation scope name
 - `otel_scope_version="0.59.0"` - The version of the OTel instrumentation
 
 
+## New semantic conventions
+Note: The `net_peer_name` attribute is deprecated and will be replaced by `server.address`.
+To enable the new `server.address` attribute, set the environment variable (see [this release](https://github.com/open-telemetry/opentelemetry-go-contrib/releases/tag/v1.34.0))
+```
+OTEL_SEMCONV_STABILITY_OPT_IN=http/compat
+```
 
 ### Labels added by our `customAttributes` method
 - `url_path="/status/200"` - The path component of the URL

@@ -11,9 +11,8 @@ import (
 	"go.opentelemetry.io/contrib/instrumentation/net/http/httptrace/otelhttptrace"
 	"go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp"
 	"go.opentelemetry.io/otel/attribute"
-	semconv "go.opentelemetry.io/otel/semconv/v1.21.0"
+	semconv "go.opentelemetry.io/otel/semconv/v1.27.0"
 )
-
 
 type HTTPOption func(*http.Client)
 
@@ -46,11 +45,11 @@ func NewHTTPClient(opts ...HTTPOption) *http.Client {
 	return client
 }
 
-
 // Adds custom attributes to metrics.
 func customAttributes(r *http.Request) []attribute.KeyValue {
 	return []attribute.KeyValue{
 		semconv.URLPathKey.String(r.URL.Path),
 		semconv.URLFullKey.String(r.URL.String()),
+		semconv.ServerAddress(r.URL.Host),
 	}
 }
